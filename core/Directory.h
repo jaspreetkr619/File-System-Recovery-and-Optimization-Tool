@@ -1,1 +1,25 @@
-// Directory class declaration
+#ifndef DIRECTORY_H
+#define DIRECTORY_H
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include "File.h"
+
+using namespace std;
+
+class Directory {
+private:
+    string name;
+    vector<File> files;
+    vector<Directory> subdirectories;
+
+public:
+    Directory(string name);
+    void addFile(File file);
+    void addDirectory(Directory directory);
+    void listContents() const;
+    string getName() const;
+};
+
+#endif
