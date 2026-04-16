@@ -11,6 +11,16 @@ void Directory::addFile(File file) {
 void Directory::addDirectory(Directory directory) {
     subdirectories.push_back(directory);
 }
+void Directory::deleteFile(string fileName) {
+    for (auto it = files.begin(); it != files.end(); ++it) {
+        if (it->getName() == fileName) {
+            files.erase(it);
+            cout << fileName << " deleted successfully.\n";
+            return;
+        }
+    }
+    cout << "File not found.\n";
+}
 
 void Directory::listContents() const {
     cout << "\nDirectory: " << name << endl;
