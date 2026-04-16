@@ -9,6 +9,7 @@ private:
     string name;
     int size;
     string content;
+    bool isDeleted;
 
 public:
     File(string name, int size);
@@ -16,6 +17,8 @@ public:
     string read() const;
     string getName() const;
     int getSize() const;
+    void setDeleted(bool status);
+    bool getDeleted() const;
 };
 
 #endif
