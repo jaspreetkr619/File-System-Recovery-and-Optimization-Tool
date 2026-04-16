@@ -22,3 +22,14 @@ This project simulates a file system with features such as:
 - Add files to directories
 - Add subdirectories to directories
 - List contents of a directory
+  
+## Day 2 Progress (Person 1)
+- Implemented file deletion (soft delete)
+- Added search functionality for files
+- Introduced basic free space tracking
+- Updated main.cpp to test new features
+
+## Features Added in Day 2
+- Delete file (marked as deleted instead of removing)
+- Search file within a directory
+- Track storage usage (used space and free space)
