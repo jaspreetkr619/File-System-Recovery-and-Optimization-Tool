@@ -18,6 +18,8 @@ int main() {
     file2.write("This is inside docs folder");
     docs.addFile(file2);
 
+    root.deleteFile("file1.txt");
+    
     root.listContents();
     docs.listContents();
 
