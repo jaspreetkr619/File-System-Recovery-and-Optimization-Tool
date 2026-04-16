@@ -14,7 +14,7 @@ void Directory::addDirectory(Directory directory) {
 void Directory::deleteFile(string fileName) {
     for (auto it = files.begin(); it != files.end(); ++it) {
         if (it->getName() == fileName) {
-            files.erase(it);
+            it->setDeleted(true);
             cout << fileName << " deleted successfully.\n";
             return;
         }
@@ -26,8 +26,10 @@ void Directory::listContents() const {
     cout << "\nDirectory: " << name << endl;
 
     for (const auto &file : files) {
+    if (!file.getDeleted()) {
         cout << "- " << file.getName() << endl;
     }
+}
 
     for (const auto &dir : subdirectories) {
         cout << "[DIR] " << dir.getName() << endl;
