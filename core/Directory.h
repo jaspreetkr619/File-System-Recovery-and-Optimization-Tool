@@ -18,6 +18,7 @@ public:
     Directory(string name);
     void addFile(File file);
     void addDirectory(Directory directory);
+    void deleteFile(string fileName);
     void listContents() const;
     string getName() const;
 };
