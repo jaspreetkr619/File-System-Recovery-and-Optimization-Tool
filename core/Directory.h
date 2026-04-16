@@ -21,6 +21,7 @@ public:
     void deleteFile(string fileName);
     void listContents() const;
     string getName() const;
+    void searchFile(string fileName) const;
 };
 
 #endif
