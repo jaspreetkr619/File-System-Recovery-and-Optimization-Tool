@@ -36,6 +36,16 @@ void Directory::listContents() const {
     }
 }
 
+void Directory::searchFile(string fileName) const {
+    for (const auto &file : files) {
+        if (!file.getDeleted() && file.getName() == fileName) {
+            cout << "File found: " << fileName << endl;
+            return;
+        }
+    }
+    cout << "File not found\n";
+}
+
 string Directory::getName() const {
     return name;
 }
