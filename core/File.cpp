@@ -4,6 +4,7 @@ File::File(string name, int size) {
     this->name = name;
     this->size = size;
     this->content = "";
+    this->isDeleted = false;
 }
 
 void File::write(string data) {
@@ -20,4 +21,12 @@ string File::getName() const {
 
 int File::getSize() const {
     return size;
+}
+
+void File::setDeleted(bool status) {
+    isDeleted = status;
+}
+
+bool File::getDeleted() const {
+    return isDeleted;
 }
