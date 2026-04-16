@@ -34,6 +34,10 @@ int main() {
     // Delete file1
     root.deleteFile("file1.txt");
 
+    //Search files
+    root.searchFile("file1.txt");
+    root.searchFile("file2.txt");
+
     // Display contents
     root.listContents();
     docs.listContents();
