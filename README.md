@@ -19,3 +19,15 @@ This project simulates a file system with features such as:
 - Create folders inside current directory
 - List directory contents
 - Maintain separate directory management layer
+
+## Day 2 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Added file creation functionality in DirectoryManager
+- Integrated File and Directory classes
+- Added file search functionality using existing Directory methods
+
+## Current Day 2 Features
+- Create files inside current directory
+- Search files within directory
+- Integrate file operations with directory structure
+- List files and directories together
