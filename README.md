@@ -31,3 +31,15 @@ This project simulates a file system with features such as:
 - Search files within directory
 - Integrate file operations with directory structure
 - List files and directories together
+
+## Day 3 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Integrated StorageManager with DirectoryManager
+- Added storage allocation during file creation
+- Added storage deallocation during file deletion
+
+## Current Day 3 Features
+- Allocate storage blocks when creating files
+- Free storage blocks when deleting files
+- Maintain synchronization between directory and storage
+- Improved file management with storage tracking
