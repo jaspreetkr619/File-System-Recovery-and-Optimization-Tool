@@ -33,3 +33,16 @@ This project simulates a file system with features such as:
 - Delete file (marked as deleted instead of removing)
 - Search file within a directory
 - Track storage usage (used space and free space)
+
+  ## Day 3 Progress (Person 1)
+- Added `StorageManager` class
+- Implemented block-based storage simulation
+- Allocated blocks when files are created
+- Freed blocks when files are deleted
+- Integrated storage tracking in `main.cpp`
+
+## Features Added in Day 3
+- Storage divided into fixed-size blocks
+- Block allocation for files
+- Block deallocation after deletion
+- Display current storage block status
