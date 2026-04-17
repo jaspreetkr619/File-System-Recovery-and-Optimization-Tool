@@ -13,6 +13,8 @@ public:
     DirectoryManager();
 
     void createFolder(const std::string& name);
+    void createFile(const std::string& name,int size);
+    void searchFile(const std::string& name) const;
     void listContents() const;
 };
 
