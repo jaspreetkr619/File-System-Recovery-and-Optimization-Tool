@@ -4,7 +4,6 @@
 using namespace std;
 void writeLog(string message)
 {
-    cout << "writeLog function called"<<endl;
     ofstream logFile("../data/logs.txt", ios::app);//open in append mode
     if(logFile.is_open())
     {
