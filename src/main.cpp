@@ -4,6 +4,7 @@ using namespace std;
 
 int main() {
     cout << "System Started" << endl;
-    writeLog("SYSTEM STARTED");//sends message to logger
+    writeLog("TXN 1 START WRITE file1 data123");//sends message to logger
+    writeLog("TXN 1 COMMIT");
     return 0;
 }
