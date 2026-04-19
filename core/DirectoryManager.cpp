@@ -5,19 +5,26 @@ using namespace std;
 DirectoryManager::DirectoryManager(int totalBlocks)
     : root("root"), current("root"), storage(totalBlocks) {}
 
+int DirectoryManager::calculateBlocks(int size){
+    int blockSize=10;
+    return (size + blockSize - 1)/blockSize; 
+}
+
 void DirectoryManager::createFolder(const std::string& name) {
     Directory newDir(name);
     current.addDirectory(newDir);
     cout<< "Folder created: "<<name<<endl;
 }
 
-void DirectoryManager::createFile(const std::string& name, int size, int blocks) {
+void DirectoryManager::createFile(const std::string& name,int size) {
+    int blocks=calculateBlocks(size);
     if (storage.allocateBlocks(blocks)) {
-        File newFile(name,size);
+        File newFile(name, size);
         current.addFile(newFile);
-        cout << "File created: " <<name<<endl;
-    } else {
-        cout << "Not enough storage space\n";
+        cout << "File created: " <<name 
+             << " (Blocks used: " <<blocks<<")"<<endl;
+    }else {
+        cout<<"Not enough storage space\n";
     }
 }
 
