@@ -43,3 +43,15 @@ This project simulates a file system with features such as:
 - Free storage blocks when deleting files
 - Maintain synchronization between directory and storage
 - Improved file management with storage tracking
+
+## Day 4 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Implemented automatic block calculation for files
+- Removed manual block input dependency
+- Improved integration with StorageManager
+
+## Current Day 4 Features
+- Automatically calculate required storage blocks
+- Allocate storage based on file size
+- Simplified file creation interface
+- Improved storage management abstraction
