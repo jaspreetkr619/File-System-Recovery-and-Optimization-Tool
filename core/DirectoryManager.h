@@ -11,6 +11,7 @@ private:
     Directory root;
     Directory current;
     StorageManager storage;
+    int calculateBlocks(int size);
 
 public:
     DirectoryManager(int totalBlocks);
