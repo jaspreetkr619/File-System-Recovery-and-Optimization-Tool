@@ -17,7 +17,25 @@ int main() {
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
+        if (choice == 1) {
+            string file, data;
 
+            cout << "Enter file name: ";
+            cin >> file;
+
+            cout << "Enter data: ";
+            cin >> data;
+
+            string startLog = "TXN 1 START WRITE " + file + " " + data;
+            writeLog(startLog);
+
+            putCache(file, data);
+
+            string commitLog = "TXN 1 COMMIT";
+            writeLog(commitLog);
+
+            cout << "Transaction completed successfully.\n";
+        }
         if (choice == 5) {
             cout << "Exiting...\n";
             break;
