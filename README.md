@@ -55,3 +55,15 @@ This project simulates a file system with features such as:
 - Allocate storage based on file size
 - Simplified file creation interface
 - Improved storage management abstraction
+
+## Day 5 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Implemented file-to-block mapping system
+- Improved storage management during file deletion
+- Removed dependency on manual block tracking
+
+## Current Day 5 Features
+- Track storage blocks used by each file
+- Automatically free correct blocks on deletion
+- Maintain mapping between files and storage usage
+- Improved accuracy of storage management
