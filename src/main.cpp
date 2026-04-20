@@ -36,6 +36,20 @@ int main() {
 
             cout << "Transaction completed successfully.\n";
         }
+        if (choice == 2) {
+            string file, data;
+
+            cout << "Enter file name: ";
+            cin >> file;
+
+            cout << "Enter data: ";
+            cin >> data;
+
+            string startLog = "TXN 2 START WRITE " + file + " " + data;
+            writeLog(startLog);
+
+            cout << "Simulating crash... (no commit)\n";
+        }
         if (choice == 5) {
             cout << "Exiting...\n";
             break;
