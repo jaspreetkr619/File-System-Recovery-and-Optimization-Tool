@@ -40,6 +40,7 @@ int main() {
 
     root.recoverFile("file1.txt");
     usedSpace += file1.getSize();
+    
     storage.allocateBlocks(2);
 
     root.searchFile("file1.txt");

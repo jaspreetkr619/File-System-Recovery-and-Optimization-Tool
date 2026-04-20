@@ -6,7 +6,7 @@ This project simulates a file system with features such as:
 - File recovery system
 - Optimization techniques
 
-## Day 1 Progress (Person 1)
+## Day 1 Progress 
 - Created personal branch: `person1-core`
 - Created project structure using GitHub online
 - Added `File` class declaration and implementation
@@ -23,7 +23,7 @@ This project simulates a file system with features such as:
 - Add subdirectories to directories
 - List contents of a directory
   
-## Day 2 Progress (Person 1)
+## Day 2 Progress 
 - Implemented file deletion (soft delete)
 - Added search functionality for files
 - Introduced basic free space tracking
@@ -34,7 +34,7 @@ This project simulates a file system with features such as:
 - Search file within a directory
 - Track storage usage (used space and free space)
 
-  ## Day 3 Progress (Person 1)
+## Day 3 Progress 
 - Added `StorageManager` class
 - Implemented block-based storage simulation
 - Allocated blocks when files are created
@@ -46,3 +46,26 @@ This project simulates a file system with features such as:
 - Block allocation for files
 - Block deallocation after deletion
 - Display current storage block status
+
+## Day 4 Progress
+- Implemented file access methods in the File class
+- Added sequential access to read full file content
+- Added direct access to read specific character positions
+- Added range-based access to read partial file content
+- Updated main.cpp to test file access functionalities
+
+## Features Added in Day 4
+- Sequential file access (read entire file)
+- Direct access (read character at a specific position)
+- Partial access (read a range of content)
+
+## Day 5 Progress 
+- Added file recovery functionality
+- Restored deleted files using soft delete mechanism
+- Updated `main.cpp` to test recovery
+- Restored storage blocks and used space after recovery
+
+## Features Added in Day 5
+- Recover deleted file by name
+- Re-display recovered file in directory listing
+- Restore storage usage after file recovery
