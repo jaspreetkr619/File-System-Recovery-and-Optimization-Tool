@@ -16,22 +16,29 @@ void DirectoryManager::createFolder(const std::string& name) {
     cout<< "Folder created: "<<name<<endl;
 }
 
-void DirectoryManager::createFile(const std::string& name,int size) {
-    int blocks=calculateBlocks(size);
+void DirectoryManager::createFile(const std::string& name, int size) {
+    int blocks = calculateBlocks(size);
     if (storage.allocateBlocks(blocks)) {
         File newFile(name, size);
         current.addFile(newFile);
-        cout << "File created: " <<name 
-             << " (Blocks used: " <<blocks<<")"<<endl;
-    }else {
-        cout<<"Not enough storage space\n";
+        fileBlockMap[name] = blocks;
+        cout << "File created: " << name 
+             << " (Blocks: " << blocks << ")" << endl;
+    } else {
+        cout << "Not enough storage space" << endl;
     }
 }
 
-void DirectoryManager::deleteFile(const std::string& name, int blocks) {
+void DirectoryManager::deleteFile(const std::string& name) {
     current.deleteFile(name);
-    storage.freeBlocks(blocks);
-    cout << "Storage freed for file: " <<name<<endl;
+    if (fileBlockMap.find(name) != fileBlockMap.end()) {
+        int blocks = fileBlockMap[name];
+        storage.freeBlocks(blocks);
+        fileBlockMap.erase(name);
+        cout << "Storage freed for: " << name << endl;
+    } else {
+        cout << "No block info found for file\n";
+    }
 }
 
 void DirectoryManager::searchFile(const std::string& name) const {
