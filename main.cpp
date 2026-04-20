@@ -20,7 +20,7 @@ int main() {
     cout << "\nSequential Read: " << file1.readSequential() << endl;
     cout << "Character at position 1: " << file1.readAt(1) << endl;
     cout << "Range (0-5): " << file1.readRange(0, 5) << endl;
-    
+
     root.addFile(file1);
     usedSpace += file1.getSize();
     storage.allocateBlocks(2);
@@ -37,6 +37,10 @@ int main() {
     root.deleteFile("file1.txt");
     usedSpace -= file1.getSize();
     storage.freeBlocks(2);
+
+    root.recoverFile("file1.txt");
+    usedSpace += file1.getSize();
+    storage.allocateBlocks(2);
 
     root.searchFile("file1.txt");
     docs.searchFile("file2.txt");

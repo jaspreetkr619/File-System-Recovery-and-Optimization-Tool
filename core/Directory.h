@@ -22,6 +22,7 @@ public:
     void listContents() const;
     string getName() const;
     void searchFile(string fileName) const;
+    void recoverFile(string fileName);
 };
 
 #endif

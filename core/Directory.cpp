@@ -49,3 +49,14 @@ void Directory::searchFile(string fileName) const {
 string Directory::getName() const {
     return name;
 }
+
+void Directory::recoverFile(string fileName) {
+    for (auto &file : files) {
+        if (file.getName() == fileName && file.getDeleted()) {
+            file.setDeleted(false);
+            cout << fileName << " recovered successfully.\n";
+            return;
+        }
+    }
+    cout << "Deleted file not found.\n";
+}
