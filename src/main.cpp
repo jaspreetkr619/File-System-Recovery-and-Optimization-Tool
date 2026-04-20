@@ -50,6 +50,10 @@ int main() {
 
             cout << "Simulating crash... (no commit)\n";
         }
+        if (choice == 3) {
+            cout << "\n--- Running Recovery ---\n";
+            recoverSystem();
+        }
         if (choice == 5) {
             cout << "Exiting...\n";
             break;
