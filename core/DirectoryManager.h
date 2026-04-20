@@ -5,12 +5,14 @@
 #include "File.h"
 #include "StorageManager.h"
 #include<string>
+#include <unordered_map>
 
 class DirectoryManager {
 private:
     Directory root;
     Directory current;
     StorageManager storage;
+    std::unordered_map<std::string, int> fileBlockMap;
     int calculateBlocks(int size);
 
 public:
