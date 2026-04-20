@@ -44,7 +44,7 @@ void recoverSystem() {
         cout << "All transactions completed successfully" << endl;
     } else {
         for (int txn : activeTransactions) {
-            cout << "Transaction " << txn << " is incomplete -> rolling back..." << endl;
+            cout << "Transaction " << txn << " is incomplete - rolling back..." << endl; //fix
             // Simulate rollback
             cout << "Rollback of TXN " << txn << " completed." << endl;
 }
