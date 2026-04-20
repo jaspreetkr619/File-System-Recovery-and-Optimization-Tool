@@ -16,6 +16,11 @@ int main() {
 
     File file1("file1.txt", 10);
     file1.write("Hello World");
+
+    cout << "\nSequential Read: " << file1.readSequential() << endl;
+    cout << "Character at position 1: " << file1.readAt(1) << endl;
+    cout << "Range (0-5): " << file1.readRange(0, 5) << endl;
+    
     root.addFile(file1);
     usedSpace += file1.getSize();
     storage.allocateBlocks(2);

@@ -1,7 +1,7 @@
 #ifndef FILE_H
 #define FILE_H
 
-#include <string>
+#include<string>
 using namespace std;
 
 class File {
@@ -15,6 +15,9 @@ public:
     File(string name, int size);
     void write(string data);
     string read() const;
+    string readSequential() const;
+    char readAt(int position) const;
+    string readRange(int start, int length) const;
     string getName() const;
     int getSize() const;
     void setDeleted(bool status);

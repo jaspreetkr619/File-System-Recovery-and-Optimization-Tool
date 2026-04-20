@@ -30,3 +30,20 @@ void File::setDeleted(bool status) {
 bool File::getDeleted() const {
     return isDeleted;
 }
+string File::readSequential() const {
+    return content;
+}
+
+char File::readAt(int position) const {
+    if (position >= 0 && position < content.length()) {
+        return content[position];
+    }
+    return '\0';
+}
+
+string File::readRange(int start, int length) const {
+    if (start >= 0 && start < content.length()) {
+        return content.substr(start, length);
+    }
+    return "";
+}
