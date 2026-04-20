@@ -54,6 +54,9 @@ int main() {
             cout << "\n--- Running Recovery ---\n";
             recoverSystem();
         }
+        if (choice == 4) {
+            showCache();
+        }
         if (choice == 5) {
             cout << "Exiting...\n";
             break;
