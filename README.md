@@ -67,3 +67,16 @@ This project simulates a file system with features such as:
 - Automatically free correct blocks on deletion
 - Maintain mapping between files and storage usage
 - Improved accuracy of storage management
+
+## Day 6 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Implemented file recovery system
+- Added soft delete mechanism
+- Added restore functionality for deleted files
+
+## Current Day 6 Features
+- Soft delete (file not permanently removed)
+- Store deleted file metadata
+- Restore deleted files
+- Reallocate storage during recovery
+- Improved reliability of file system
