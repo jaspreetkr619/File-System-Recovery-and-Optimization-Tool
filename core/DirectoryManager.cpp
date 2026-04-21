@@ -43,20 +43,12 @@ void DirectoryManager::deleteFile(const std::string& name) {
 }
 
 void DirectoryManager::restoreFile(const std::string& name) {
-    if (deletedFiles.find(name) != deletedFiles.end()) {
-        int blocks = deletedFiles[name].blocks;
-        if (storage.allocateBlocks(blocks)) {
-            File restoredFile(name, 0); 
-            current.addFile(restoredFile);
-            fileBlockMap[name] = blocks;
-            deletedFiles.erase(name);
-            cout << "File restored: " << name << endl;
-        } else {
-            cout << "Not enough storage to restore file\n";
-        }
-    } else {
-        cout << "No such deleted file\n";
+    current.recoverFile(name);
+    if (fileBlockMap.find(name) != fileBlockMap.end()) {
+        int blocks = fileBlockMap[name];
+        storage.allocateBlocks(blocks);
     }
+    cout << "File restored: " << name << endl;
 }
 
 void DirectoryManager::searchFile(const std::string& name) const {
