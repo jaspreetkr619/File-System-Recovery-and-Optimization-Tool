@@ -7,12 +7,18 @@
 #include<string>
 #include <unordered_map>
 
+struct DeletedFileInfo{
+    int size;
+    int blocks;
+};
+
 class DirectoryManager {
 private:
     Directory root;
     Directory current;
     StorageManager storage;
     std::unordered_map<std::string, int> fileBlockMap;
+    std::unordered_map<std::string, DeletedFileInfo> deletedFiles;
     int calculateBlocks(int size);
 
 public:
@@ -21,6 +27,7 @@ public:
     void createFolder(const std::string& name);
     void createFile(const std::string& name,int size);
     void deleteFile(const std::string& name,int blocks);
+    void restoreFile(const std::string& name);
     void searchFile(const std::string& name) const;
     void listContents() const;
 };
