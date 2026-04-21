@@ -24,7 +24,17 @@ void recoverSystem() {
 
         // Extract transaction ID
         if (line.find("TXN") != string::npos) {
-            int txnId = line[4] - '0'; // simple extraction (assumes single digit)
+            int txnId = -1;
+
+            // Extract number after "TXN "
+            size_t pos = line.find("TXN ");
+            if (pos != string::npos) {
+                size_t start = pos + 4;
+                size_t end = line.find(" ", start);
+
+                string idStr = line.substr(start, end - start);
+                txnId = stoi(idStr);
+            }
 
             if (line.find("START") != string::npos) {
                 activeTransactions.insert(txnId);
