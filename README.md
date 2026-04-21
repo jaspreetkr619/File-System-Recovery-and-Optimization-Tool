@@ -80,3 +80,17 @@ This project simulates a file system with features such as:
 - Restore deleted files
 - Reallocate storage during recovery
 - Improved reliability of file system
+
+## Day 7 Progress (Person 2)
+- Completed DirectoryManager module
+- Implemented CLI-based interface
+- Integrated all features from Day 1 to Day 6
+- Performed testing and validation
+
+## Current Day 7 Features
+- Command-based file system interaction
+- Create/delete/restore/search files
+- Directory management
+- Storage management integration
+- File recovery system
+- End-to-end working system
