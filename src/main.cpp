@@ -47,7 +47,9 @@ int main() {
             cout << "Enter data: ";
             cin >> data;
 
-            string startLog = "TXN 2 START WRITE " + file + " " + data;
+           int txnId = txnCounter++;
+
+            string startLog = "TXN " + to_string(txnId) + " START WRITE " + file + " " + data;
             writeLog(startLog);
 
             cout << "Simulating crash... (no commit)\n";
