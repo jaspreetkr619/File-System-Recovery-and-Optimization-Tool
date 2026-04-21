@@ -2,7 +2,7 @@
 #include "logger.h"
 #include "recovery.h"
 #include "cache.h"
-
+int txnCounter = 1;
 using namespace std;
 
 int main() {
@@ -26,7 +26,9 @@ int main() {
             cout << "Enter data: ";
             cin >> data;
 
-            string startLog = "TXN 1 START WRITE " + file + " " + data;
+            int txnId = txnCounter++;
+
+            string startLog = "TXN " + to_string(txnId) + " START WRITE " + file + " " + data;
             writeLog(startLog);
 
             putCache(file, data);
