@@ -42,3 +42,19 @@ void StorageManager::displayStorageStatus() const {
     }
     cout << endl;
 }
+
+int StorageManager::getUsedBlockCount() const {
+    int count = 0;
+    for (int block : blocks) {
+        if (block == 1) count++;
+    }
+    return count;
+}
+
+int StorageManager::getFreeBlockCount() const {
+    int count = 0;
+    for (int block : blocks) {
+        if (block == 0) count++;
+    }
+    return count;
+}

@@ -11,11 +11,16 @@ void Directory::addFile(File file) {
 void Directory::addDirectory(Directory directory) {
     subdirectories.push_back(directory);
 }
+
 void Directory::deleteFile(string fileName) {
-    for (auto it = files.begin(); it != files.end(); ++it) {
-        if (it->getName() == fileName) {
-            it->setDeleted(true);
-            cout << fileName << " deleted successfully.\n";
+    for (auto &file : files) {
+        if (file.getName() == fileName) {
+            if (file.getDeleted()) {
+                cout << fileName << " is already deleted.\n";
+                return;
+            }
+            file.setDeleted(true);
+            cout << fileName << " marked as deleted.\n";
             return;
         }
     }
@@ -52,11 +57,41 @@ string Directory::getName() const {
 
 void Directory::recoverFile(string fileName) {
     for (auto &file : files) {
-        if (file.getName() == fileName && file.getDeleted()) {
+        if (file.getName() == fileName) {
+            if (!file.getDeleted()) {
+                cout << fileName << " is already active.\n";
+                return;
+            }
             file.setDeleted(false);
             cout << fileName << " recovered successfully.\n";
             return;
         }
     }
     cout << "Deleted file not found.\n";
+}
+
+void Directory::showAllContents() const {
+    cout << "\nDirectory (All Contents): " << name << endl;
+
+    for (const auto &file : files) {
+        cout << "- " << file.getName();
+        if (file.getDeleted()) {
+            cout << " [DELETED]";
+        }
+        cout << endl;
+    }
+
+    for (const auto &dir : subdirectories) {
+        cout << "[DIR] " << dir.getName() << endl;
+    }
+}
+
+int Directory::getActiveFileCount() const {
+    int count = 0;
+    for (const auto &file : files) {
+        if (!file.getDeleted()) {
+            count++;
+        }
+    }
+    return count;
 }

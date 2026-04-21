@@ -15,6 +15,8 @@ public:
     bool allocateBlocks(int numBlocks);
     void freeBlocks(int numBlocks);
     void displayStorageStatus() const;
+    int getUsedBlockCount() const;
+    int getFreeBlockCount() const;
 };
 
 #endif

@@ -38,9 +38,10 @@ int main() {
     usedSpace -= file1.getSize();
     storage.freeBlocks(2);
 
+    root.showAllContents();
+
     root.recoverFile("file1.txt");
     usedSpace += file1.getSize();
-    
     storage.allocateBlocks(2);
 
     root.searchFile("file1.txt");
@@ -51,6 +52,11 @@ int main() {
 
     cout << "Free Space: " << totalSpace - usedSpace << endl;
     storage.displayStorageStatus();
+
+    cout << "Active files in root: " << root.getActiveFileCount() << endl;
+    cout << "Used Blocks: " << storage.getUsedBlockCount() << endl;
+    cout << "Free Blocks: " << storage.getFreeBlockCount() << endl;
+
 
     return 0;
 }

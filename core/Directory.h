@@ -23,6 +23,8 @@ public:
     string getName() const;
     void searchFile(string fileName) const;
     void recoverFile(string fileName);
+    void showAllContents() const;
+    int getActiveFileCount() const;
 };
 
 #endif
