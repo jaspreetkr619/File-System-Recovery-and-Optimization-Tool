@@ -69,3 +69,18 @@ This project simulates a file system with features such as:
 - Recover deleted file by name
 - Re-display recovered file in directory listing
 - Restore storage usage after file recovery
+
+## Day 6 Progress
+- Improved deleteFile() to handle already deleted files
+- Improved recoverFile() to handle already active files
+- Added showAllContents() for debugging and demonstration
+- Added helper function to count active files in a directory
+- Added storage summary functions to count used and free blocks
+- Updated `main.cpp` to test all new features
+
+## Features Added in Day 6
+- Safe deletion handling (prevents double deletion)
+- Safe recovery handling (prevents invalid recovery)
+- Debug listing to display deleted and active files
+- Active file count for directories
+- Storage usage summary (used and free blocks)
