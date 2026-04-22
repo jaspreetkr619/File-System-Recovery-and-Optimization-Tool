@@ -14,7 +14,7 @@ This project simulates a file system with features such as:
 - Added `main.cpp` to test the file system structure
 - Implemented a basic simulation of files and directories
 
-## Current Day 1 Features
+## Features Added in Day 1 
 - Create a file with name and size
 - Write content into a file
 - Read file content
