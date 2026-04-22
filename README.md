@@ -84,3 +84,16 @@ This project simulates a file system with features such as:
 - Debug listing to display deleted and active files
 - Active file count for directories
 - Storage usage summary (used and free blocks)
+
+## Day 7 Progress 
+- Organized `main.cpp` into structured demo sections
+- Improved output readability using clear headings
+- Added system summary section for final results
+- Performed final testing and validation of all features
+- Cleaned and prepared project for submission
+
+## Features Added in Day 7
+- Structured program flow for demonstration
+- Section-based output (creation, access, delete, recovery, summary)
+- Final system summary display
+- Improved readability and presentation
