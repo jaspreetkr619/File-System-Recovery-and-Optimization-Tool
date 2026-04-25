@@ -5,7 +5,7 @@
 using namespace std;
 void writeLog(string message)
 {
-    ofstream logFile("../data/logs.txt", ios::app);//open in append mode
+    ofstream logFile("data/logs.txt", ios::app);
     if(logFile.is_open())
     {
         time_t now = time(0);

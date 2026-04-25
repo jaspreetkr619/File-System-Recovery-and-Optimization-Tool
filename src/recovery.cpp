@@ -7,7 +7,7 @@
 using namespace std;
 
 void recoverSystem() {
-    ifstream logFile("../data/logs.txt");
+    ifstream logFile("data/logs.txt");
 
     if (!logFile.is_open()) {
         cout << "Failed to open log file" << endl;
