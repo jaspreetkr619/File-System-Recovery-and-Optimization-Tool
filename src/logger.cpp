@@ -5,7 +5,7 @@
 using namespace std;
 void writeLog(string message)
 {
-    ofstream logFile("data/logs.txt", ios::app);
+    ofstream logFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\logs.txt", ios::app);
     if(logFile.is_open())
     {
         time_t now = time(0);

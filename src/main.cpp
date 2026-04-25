@@ -4,7 +4,6 @@
 #include "recovery.h"
 #include "cache.h"
 #include <fstream>
-
 using namespace std;
 
 int txnCounter = 1;
@@ -55,11 +54,18 @@ int main(int argc, char* argv[]) {
         showCache();
     }
 
-    else if (command == "clear") {
-        ofstream logFile("../data/logs.txt", ios::trunc);
-        logFile.close();
-        cout << "[INFO] Logs cleared.\n";
+   else if (command == "clear") {
+    ofstream logFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\logs.txt", ios::trunc);
+
+    if (!logFile) {
+        cout << "Error: Could not open log file.\n";
+        return 1;
     }
+
+    logFile.close();
+
+    cout << "[INFO] Logs cleared.\n";
+}
 
     else {
         cout << "Invalid command.\n";

@@ -4,9 +4,15 @@ import os
 
 app = Flask(__name__)
 
+# 🔹 Get absolute paths once (clean approach)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+EXE_PATH = os.path.join(BASE_DIR, "src", "main.exe")
+
+
 @app.route("/")
 def home():
     return "Backend is running"
+
 
 @app.route("/transaction")
 def transaction():
@@ -16,22 +22,14 @@ def transaction():
     if not file or not data:
         return "Missing parameters", 400
 
-    try:
-        # 🔥 Correct path to main.exe
-        exe_path = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), "..", "src", "main.exe")
-        )
+    result = subprocess.run(
+        [EXE_PATH, "transaction", file, data],
+        capture_output=True,
+        text=True,
+        cwd=BASE_DIR
+    )
 
-        result = subprocess.run(
-            [exe_path, "transaction", file, data],
-            capture_output=True,
-            text=True
-        )
-
-        return "<pre>" + result.stdout + "</pre>"
-
-    except Exception as e:
-        return str(e)
+    return "<pre>" + result.stdout + "</pre>"
 
 
 @app.route("/crash")
@@ -42,55 +40,51 @@ def crash():
     if not file or not data:
         return "Missing parameters", 400
 
-    exe_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "src", "main.exe")
-    )
-
     result = subprocess.run(
-        [exe_path, "crash", file, data],
+        [EXE_PATH, "crash", file, data],
         capture_output=True,
-        text=True
+        text=True,
+        cwd=BASE_DIR
     )
 
     return "<pre>" + result.stdout + "</pre>"
+
+
 @app.route("/recovery")
 def recovery():
-    exe_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "src", "main.exe")
-    )
-
     result = subprocess.run(
-        [exe_path, "recovery"],
+        [EXE_PATH, "recovery"],
         capture_output=True,
-        text=True
+        text=True,
+        cwd=BASE_DIR
     )
 
     return "<pre>" + result.stdout + "</pre>"
+
+
 @app.route("/cache")
 def cache():
-    exe_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "src", "main.exe")
-    )
-
     result = subprocess.run(
-        [exe_path, "cache"],
+        [EXE_PATH, "cache"],
         capture_output=True,
-        text=True
+        text=True,
+        cwd=BASE_DIR
     )
 
     return "<pre>" + result.stdout + "</pre>"
+
+
 @app.route("/clear")
 def clear():
-    exe_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "src", "main.exe")
-    )
-
     result = subprocess.run(
-        [exe_path, "clear"],
+        [EXE_PATH, "clear"],
         capture_output=True,
-        text=True
+        text=True,
+        cwd=BASE_DIR
     )
 
     return "<pre>" + result.stdout + "</pre>"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
