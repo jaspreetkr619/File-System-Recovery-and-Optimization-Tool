@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File System Recovery Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>File System Recovery & Optimization Tool</h1>
+
+    <div class="input-section">
+        <input type="text" id="file" placeholder="Enter file name">
+        <input type="text" id="data" placeholder="Enter data">
+    </div>
+
+    <div class="buttons">
+        <button onclick="performTransaction()">Transaction</button>
+        <button onclick="simulateCrash()">Crash</button>
+        <button onclick="runRecovery()">Recovery</button>
+        <button onclick="showCache()">Cache</button>
+        <button onclick="clearLogs()">Clear Logs</button>
+    </div>
+
+    <div class="output">
+        <h3>Output</h3>
+        <pre id="outputBox">System output will appear here...</pre>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
