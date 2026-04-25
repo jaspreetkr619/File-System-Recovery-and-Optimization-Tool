@@ -3,6 +3,7 @@
 #include "logger.h"
 #include "recovery.h"
 #include "cache.h"
+#include <fstream>
 
 using namespace std;
 
