@@ -20,7 +20,7 @@ void recoverSystem() {
     cout << "\n[INFO] Analyzing logs...\n" << endl;
 
     while (getline(logFile, line)) {
-        cout << line << endl;
+        cout << "[LOG] " << line << endl;
 
         // Extract transaction ID
         if (line.find("TXN") != string::npos) {
