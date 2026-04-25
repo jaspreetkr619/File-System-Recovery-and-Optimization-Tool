@@ -28,7 +28,7 @@ def transaction():
             text=True
         )
 
-        return result.stdout
+        return "<pre>" + result.stdout + "</pre>"
 
     except Exception as e:
         return str(e)
@@ -52,7 +52,7 @@ def crash():
         text=True
     )
 
-    return result.stdout
+    return "<pre>" + result.stdout + "</pre>"
 @app.route("/recovery")
 def recovery():
     exe_path = os.path.abspath(
@@ -65,7 +65,7 @@ def recovery():
         text=True
     )
 
-    return result.stdout
+    return "<pre>" + result.stdout + "</pre>"
 @app.route("/cache")
 def cache():
     exe_path = os.path.abspath(
@@ -78,7 +78,7 @@ def cache():
         text=True
     )
 
-    return result.stdout
+    return "<pre>" + result.stdout + "</pre>"
 @app.route("/clear")
 def clear():
     exe_path = os.path.abspath(
@@ -91,6 +91,6 @@ def clear():
         text=True
     )
 
-    return result.stdout
+    return "<pre>" + result.stdout + "</pre>"
 if __name__ == "__main__":
     app.run(debug=True)
