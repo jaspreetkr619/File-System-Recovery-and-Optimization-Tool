@@ -36,7 +36,7 @@ int main() {
 
             putCache(file, data);
 
-            string commitLog = "TXN 1 COMMIT";
+            string commitLog = "TXN " + to_string(txnId) + " | COMMIT";
             writeLog(commitLog);
 
            cout << "[SUCCESS] Transaction committed.\n";
@@ -52,7 +52,7 @@ int main() {
 
            int txnId = txnCounter++;
 
-            string startLog = "TXN " + to_string(txnId) + " START WRITE " + file + " " + data;
+            string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + file + " " + data;
             writeLog(startLog);
 
             cout << "[WARNING] Crash simulated. Transaction not committed.\n";

@@ -15,7 +15,7 @@ void writeLog(string message)
         string timeStr(dt);
         timeStr.pop_back();
 
-        logFile << "[" << timeStr << "] " << message << endl;
+        logFile << "[" << timeStr << "] | " << message << endl;
         logFile.close();//closes the file
     }
     else{
