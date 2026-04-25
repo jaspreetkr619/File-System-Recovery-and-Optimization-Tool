@@ -9,12 +9,15 @@ int main() {
     int choice;
 
     while (true) {
-        cout << "\n===== File System Simulator =====\n";
+        cout << "\n=================================\n";
+        cout << "     FILE SYSTEM SIMULATOR\n";
+        cout << "=================================\n";
         cout << "1. Perform Transaction\n";
         cout << "2. Simulate Crash\n";
         cout << "3. Run Recovery\n";
         cout << "4. Show Cache\n";
         cout << "5. Exit\n";
+        cout << "---------------------------------\n";
         cout << "Enter your choice: ";
         cin >> choice;
         if (choice == 1) {
@@ -36,7 +39,7 @@ int main() {
             string commitLog = "TXN 1 COMMIT";
             writeLog(commitLog);
 
-            cout << "Transaction completed successfully.\n";
+           cout << "[SUCCESS] Transaction committed.\n";
         }
         if (choice == 2) {
             string file, data;
@@ -52,7 +55,7 @@ int main() {
             string startLog = "TXN " + to_string(txnId) + " START WRITE " + file + " " + data;
             writeLog(startLog);
 
-            cout << "Simulating crash... (no commit)\n";
+            cout << "[WARNING] Crash simulated. Transaction not committed.\n";
         }
         if (choice == 3) {
             cout << "\n--- Running Recovery ---\n";

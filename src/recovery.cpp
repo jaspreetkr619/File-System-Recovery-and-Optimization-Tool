@@ -17,7 +17,7 @@ void recoverSystem() {
     set<int> activeTransactions;
     string line;
 
-    cout << "Analyzing logs..." << endl;
+    cout << "\n[INFO] Analyzing logs...\n" << endl;
 
     while (getline(logFile, line)) {
         cout << line << endl;
