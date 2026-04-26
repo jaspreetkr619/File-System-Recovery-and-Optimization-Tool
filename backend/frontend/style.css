@@ -1,57 +1,110 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: #fff;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
     margin: 0;
-    padding: 0;
 }
 
+/* Container */
 .container {
-    width: 60%;
-    margin: auto;
-    text-align: center;
-    padding-top: 40px;
+    width: 65%;
+    margin: 40px auto;
+    padding: 30px;
+    background: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
+/* Headings */
 h1 {
+    text-align: center;
     margin-bottom: 30px;
+    color: #f8fafc;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #cbd5f5;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #0f172a;
+    border-radius: 10px;
+}
+
+/* Input Fields */
+.input-section {
+    display: flex;
+    gap: 10px;
 }
 
 .input-section input {
-    padding: 10px;
-    margin: 5px;
-    width: 40%;
-    border-radius: 5px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
     border: none;
+    background: #334155;
+    color: white;
+    outline: none;
 }
 
+.input-section input::placeholder {
+    color: #94a3b8;
+}
+
+/* Buttons */
 .buttons {
-    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 button {
-    padding: 10px 15px;
-    margin: 5px;
+    flex: 1;
+    min-width: 150px;
+    padding: 12px;
+    border-radius: 6px;
     border: none;
-    border-radius: 5px;
     background: #3b82f6;
     color: white;
+    font-weight: bold;
     cursor: pointer;
+    transition: all 0.25s ease;
 }
 
+/* Hover effect */
 button:hover {
     background: #2563eb;
+    transform: translateY(-2px);
 }
 
-.output {
-    margin-top: 20px;
-    text-align: left;
+/* Disabled buttons (for future modules) */
+button:disabled {
+    background: #475569;
+    cursor: not-allowed;
 }
 
-pre {
-    background: #1e293b;
+/* Output Box */
+.output pre {
+    background: #020617;
     padding: 15px;
-    border-radius: 5px;
-    height: 300px;
+    border-radius: 6px;
+    height: 250px;
     overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.4;
+    border: 1px solid #334155;
+}
+
+/* Scrollbar styling (optional polish) */
+pre::-webkit-scrollbar {
+    width: 6px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
 }
