@@ -6,6 +6,7 @@ This project simulates a file system with features such as:
 - File recovery system
 - Optimization techniques
 
+# Person 1 work
 ## Day 1 Progress 
 - Created personal branch: `person1-core`
 - Created project structure using GitHub online
@@ -97,3 +98,93 @@ This project simulates a file system with features such as:
 - Section-based output (creation, access, delete, recovery, summary)
 - Final system summary display
 - Improved readability and presentation
+
+# Person 2 work
+## Day 1 Progress (Person 2)
+- Created personal branch: `person2-core`
+- Added `DirectoryManager` class in core module
+- Integrated with existing `Directory` class
+- Implemented basic folder creation functionality
+- Implemented directory listing functionality
+- Ensured compatibility with existing project structure
+
+## Current Day 1 Features
+- Initialize root directory
+- Create folders inside current directory
+- List directory contents
+- Maintain separate directory management layer
+
+## Day 2 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Added file creation functionality in DirectoryManager
+- Integrated File and Directory classes
+- Added file search functionality using existing Directory methods
+
+## Current Day 2 Features
+- Create files inside current directory
+- Search files within directory
+- Integrate file operations with directory structure
+- List files and directories together
+
+## Day 3 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Integrated StorageManager with DirectoryManager
+- Added storage allocation during file creation
+- Added storage deallocation during file deletion
+
+## Current Day 3 Features
+- Allocate storage blocks when creating files
+- Free storage blocks when deleting files
+- Maintain synchronization between directory and storage
+- Improved file management with storage tracking
+
+## Day 4 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Implemented automatic block calculation for files
+- Removed manual block input dependency
+- Improved integration with StorageManager
+
+## Current Day 4 Features
+- Automatically calculate required storage blocks
+- Allocate storage based on file size
+- Simplified file creation interface
+- Improved storage management abstraction
+
+## Day 5 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Implemented file-to-block mapping system
+- Improved storage management during file deletion
+- Removed dependency on manual block tracking
+
+## Current Day 5 Features
+- Track storage blocks used by each file
+- Automatically free correct blocks on deletion
+- Maintain mapping between files and storage usage
+- Improved accuracy of storage management
+
+## Day 6 Progress (Person 2)
+- Continued work on `person2-core` branch
+- Implemented file recovery system
+- Added soft delete mechanism
+- Added restore functionality for deleted files
+
+## Current Day 6 Features
+- Soft delete (file not permanently removed)
+- Store deleted file metadata
+- Restore deleted files
+- Reallocate storage during recovery
+- Improved reliability of file system
+
+## Day 7 Progress (Person 2)
+- Completed DirectoryManager module
+- Implemented CLI-based interface
+- Integrated all features from Day 1 to Day 6
+- Performed testing and validation
+
+## Current Day 7 Features
+- Command-based file system interaction
+- Create/delete/restore/search files
+- Directory management
+- Storage management integration
+- File recovery system
+- End-to-end working system
