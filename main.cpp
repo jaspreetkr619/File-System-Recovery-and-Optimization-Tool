@@ -1,92 +1,109 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+
+#include "logger.h"
+#include "recovery.h"
+#include "cache.h"
+
+// Person 1 modules
 #include "core/File.h"
 #include "core/Directory.h"
 #include "core/StorageManager.h"
 
 using namespace std;
 
-int main() {
+int txnCounter = 1;
 
-    // Initialize storage
-    int totalSpace = 100;
-    int usedSpace = 0;
+int main(int argc, char* argv[]) {
 
+    // Initialize Disk System (Person 1)
     StorageManager storage(10);
-
     Directory root("root");
 
-    cout << "\n===== FILE CREATION =====\n";
+    if (argc < 2) {
+        cout << "No command provided.\n";
+        return 1;
+    }
 
-    // Create file1
-    File file1("file1.txt", 10);
-    file1.write("Hello World");
-    root.addFile(file1);
-    usedSpace += file1.getSize();
-    storage.allocateBlocks(2);
+    string command = argv[1];
 
-    // Create subdirectory
-    Directory docs("docs");
-    root.addDirectory(docs);
+    // ================= TRANSACTION =================
+    if (command == "transaction" && argc == 4) {
+        string fileName = argv[2];
+        string data = argv[3];
 
-    // Create file2 inside docs
-    File file2("file2.txt", 20);
-    file2.write("This is inside docs folder");
-    docs.addFile(file2);
-    usedSpace += file2.getSize();
-    storage.allocateBlocks(3);
+        int txnId = txnCounter++;
 
-    cout << "\n===== FILE ACCESS =====\n";
+        // Log START
+        string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + fileName + " " + data;
+        writeLog(startLog);
 
-    // Sequential access
-    cout << "Full Content: " << file1.readSequential() << endl;
+        // CACHE (simple integration)
+        string cached = getFromCache(fileName);
 
-    // Direct access
-    cout << "Character at position 1: " << file1.readAt(1) << endl;
+if (cached != "") {
+    cout << "[CACHE HIT] " << fileName << endl;
+} else {
+    cout << "[CACHE MISS] " << fileName << endl;
+    putCache(fileName, data);
+}
 
-    // Range access
-    cout << "First 5 characters: " << file1.readRange(0, 5) << endl;
+        // DISK WRITE (Person 1)
+        File file(fileName, data.length());
+        file.write(data);
+        root.addFile(file);
+        storage.allocateBlocks(1);
 
-    cout << "\n===== DELETE OPERATION =====\n";
+        // Log COMMIT
+        string commitLog = "TXN " + to_string(txnId) + " | COMMIT";
+        writeLog(commitLog);
 
-    // Delete file1
-    root.deleteFile("file1.txt");
-    usedSpace -= file1.getSize();
-    storage.freeBlocks(2);
+        cout << "[SUCCESS] Transaction completed.\n";
+    }
 
-    // Show all contents (including deleted)
-    root.showAllContents();
+    // ================= CRASH =================
+    else if (command == "crash" && argc == 4) {
+        string fileName = argv[2];
+        string data = argv[3];
 
-    cout << "\n===== RECOVERY =====\n";
+        int txnId = txnCounter++;
 
-    // Recover file1
-    root.recoverFile("file1.txt");
-    usedSpace += file1.getSize();
-    storage.allocateBlocks(2);
+        string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + fileName + " " + data;
+        writeLog(startLog);
 
-    cout << "\n===== SEARCH OPERATIONS =====\n";
+        cout << "[WARNING] Crash simulated. No commit.\n";
+    }
 
-    // Search files
-    root.searchFile("file1.txt");
-    docs.searchFile("file2.txt");
+    // ================= RECOVERY =================
+    else if (command == "recovery") {
+        recoverSystem();
+    }
 
-    cout << "\n===== FINAL STATUS =====\n";
+    // ================= CACHE =================
+    else if (command == "cache") {
+        showCache();
+    }
 
-    // Final directory contents
-    root.listContents();
-    docs.listContents();
+    // ================= CLEAR LOGS =================
+    else if (command == "clear") {
+        ofstream logFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\logs.txt", ios::trunc);
+        // also clear cache
+ofstream cacheFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\cache.txt", ios::trunc);
+ofstream statsFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\cache_stats.txt", ios::trunc);
 
-    cout << "\n===== SYSTEM SUMMARY =====\n";
+        if (!logFile) {
+            cout << "Error: Could not open log file.\n";
+            return 1;
+        }
 
-    // Space info
-    cout << "Free Space: " << totalSpace - usedSpace << endl;
+        logFile.close();
+        cout << "[INFO] Logs cleared.\n";
+    }
 
-    // Block-level storage
-    storage.displayStorageStatus();
-
-    // Additional stats
-    cout << "Active files in root: " << root.getActiveFileCount() << endl;
-    cout << "Used Blocks: " << storage.getUsedBlockCount() << endl;
-    cout << "Free Blocks: " << storage.getFreeBlockCount() << endl;
+    else {
+        cout << "Invalid command.\n";
+    }
 
     return 0;
 }

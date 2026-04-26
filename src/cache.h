@@ -2,9 +2,10 @@
 #define CACHE_H
 
 #include <string>
+using namespace std;
 
-void putCache(std::string key, std::string value);
-std::string getCache(std::string key);
+void putCache(string key, string value);
+string getFromCache(string key);
 void showCache();
 
 #endif

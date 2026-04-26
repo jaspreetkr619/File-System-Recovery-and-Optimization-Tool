@@ -6,10 +6,11 @@ app = Flask(__name__, static_folder="frontend", static_url_path="")
 CORS(app)
 
 # 🔹 Get absolute paths once (clean approach)
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-EXE_PATH = os.path.join(BASE_DIR, "src", "main.exe")
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, ".."))
 
+EXE_PATH = os.path.join(PROJECT_ROOT, "main.exe")
 @app.route("/")
 def serve_frontend():
     return send_from_directory(app.static_folder, "index.html")
@@ -27,7 +28,6 @@ def transaction():
         [EXE_PATH, "transaction", file, data],
         capture_output=True,
         text=True,
-        cwd=BASE_DIR
     )
 
     return result.stdout
@@ -45,7 +45,6 @@ def crash():
         [EXE_PATH, "crash", file, data],
         capture_output=True,
         text=True,
-        cwd=BASE_DIR
     )
 
     return result.stdout
@@ -57,7 +56,6 @@ def recovery():
         [EXE_PATH, "recovery"],
         capture_output=True,
         text=True,
-        cwd=BASE_DIR
     )
 
     return result.stdout
@@ -69,7 +67,6 @@ def cache():
         [EXE_PATH, "cache"],
         capture_output=True,
         text=True,
-        cwd=BASE_DIR
     )
 
     return result.stdout
@@ -81,7 +78,6 @@ def clear():
         [EXE_PATH, "clear"],
         capture_output=True,
         text=True,
-        cwd=BASE_DIR
     )
 
     return result.stdout
