@@ -1,33 +1,31 @@
-#ifndef DIRECTORY_MANAGER_H
-#define DIRECTORY_MANAGER_H
+#ifndef DIRECTORYMANAGER_H
+#define DIRECTORYMANAGER_H
+
+#include <iostream>
+#include <string>
+#include <unordered_map>
 
 #include "Directory.h"
 #include "File.h"
 #include "StorageManager.h"
-#include<string>
-#include <unordered_map>
 
-// struct DeletedFileInfo{
-//     int size;
-//     int blocks;
-// };
+using namespace std;
 
 class DirectoryManager {
 private:
-    Directory root;
     Directory current;
     StorageManager storage;
-    std::unordered_map<std::string, int> fileBlockMap;
-    int calculateBlocks(int size);
+    unordered_map<string, int> fileBlockMap;
+    unordered_map<string, int> deletedFileBlockMap;
 
 public:
-    DirectoryManager(int totalBlocks);
+    DirectoryManager();
 
-    void createFolder(const std::string& name);
-    void createFile(const std::string& name,int size);
-    void deleteFile(const std::string& name,int blocks);
-    void restoreFile(const std::string& name);
-    void searchFile(const std::string& name) const;
+    void createFolder(const string& name);
+    void createFile(const string& name, int size, int blocks);
+    void deleteFile(const string& name);
+    void restoreFile(const string& name);
+    void searchFile(const string& name) const;
     void listContents() const;
 };
 

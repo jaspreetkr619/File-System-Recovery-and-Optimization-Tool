@@ -1,60 +1,63 @@
 #include "DirectoryManager.h"
-#include<iostream>
-using namespace std;
 
-DirectoryManager::DirectoryManager(int totalBlocks)
-    : root("root"), current("root"), storage(totalBlocks) {}
+DirectoryManager::DirectoryManager()
+    : current("root"), storage(10) {}
 
-int DirectoryManager::calculateBlocks(int size){
-    int blockSize=10;
-    return (size + blockSize - 1)/blockSize; 
+void DirectoryManager::createFolder(const string& name) {
+    Directory folder(name);
+    current.addDirectory(folder);
+    cout << "Folder created: " << name << endl;
 }
 
-void DirectoryManager::createFolder(const std::string& name) {
-    Directory newDir(name);
-    current.addDirectory(newDir);
-    cout<< "Folder created: "<<name<<endl;
-}
-
-void DirectoryManager::createFile(const std::string& name, int size) {
-    int blocks = calculateBlocks(size);
+void DirectoryManager::createFile(const string& name, int size, int blocks) {
     if (storage.allocateBlocks(blocks)) {
-        File newFile(name, size);
-        current.addFile(newFile);
+        File file(name, size);
+        current.addFile(file);
         fileBlockMap[name] = blocks;
-        cout << "File created: " << name 
-             << " (Blocks: " << blocks << ")" << endl;
+        cout << "File created: " << name << endl;
     } else {
-        cout << "Not enough storage space" << endl;
+        cout << "Not enough storage space to create file\n";
     }
 }
 
-void DirectoryManager::deleteFile(const std::string& name) {
+void DirectoryManager::deleteFile(const string& name) {
     current.deleteFile(name);
+
     if (fileBlockMap.find(name) != fileBlockMap.end()) {
         int blocks = fileBlockMap[name];
-        deletedFiles[name] = {0, blocks};  
+        deletedFileBlockMap[name] = blocks;
         storage.freeBlocks(blocks);
         fileBlockMap.erase(name);
-        cout << "File soft deleted: " << name << endl;
+
+        cout << "File soft deleted from storage map: " << name << endl;
     } else {
-        cout << "File not found\n";
+        cout << "File not found in active storage map\n";
     }
 }
 
-void DirectoryManager::restoreFile(const std::string& name) {
+void DirectoryManager::restoreFile(const string& name) {
     current.recoverFile(name);
-    if (fileBlockMap.find(name) != fileBlockMap.end()) {
-        int blocks = fileBlockMap[name];
-        storage.allocateBlocks(blocks);
+
+    if (deletedFileBlockMap.find(name) != deletedFileBlockMap.end()) {
+        int blocks = deletedFileBlockMap[name];
+
+        if (storage.allocateBlocks(blocks)) {
+            fileBlockMap[name] = blocks;
+            deletedFileBlockMap.erase(name);
+            cout << "File restored in storage map: " << name << endl;
+        } else {
+            cout << "Not enough storage space to restore file\n";
+        }
+    } else {
+        cout << "Deleted file not found in recovery map\n";
     }
-    cout << "File restored: " << name << endl;
 }
 
-void DirectoryManager::searchFile(const std::string& name) const {
+void DirectoryManager::searchFile(const string& name) const {
     current.searchFile(name);
 }
 
 void DirectoryManager::listContents() const {
     current.listContents();
+    storage.displayStorageStatus();
 }
