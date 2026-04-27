@@ -1,5 +1,8 @@
 # Ignore executables
 *.exe
+data/cache.txt
+data/logs.txt
+data/cache_stats.txt
 
 # Ignore build files
 *.out
