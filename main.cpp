@@ -1,23 +1,18 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
-#include "logger.h"
-#include "recovery.h"
-#include "cache.h"
-
-// Person 1 modules
-#include "core/File.h"
+#include "src/logger.h"
+#include "src/recovery.h"
+#include "src/cache.h"
 #include "core/Directory.h"
 #include "core/StorageManager.h"
-
+#include "core/File.h"
 using namespace std;
 
 int txnCounter = 1;
 
 int main(int argc, char* argv[]) {
-
-    // Initialize Disk System (Person 1)
+    // Initialize system (Person-1 setup)
     StorageManager storage(10);
     Directory root("root");
 
@@ -29,77 +24,78 @@ int main(int argc, char* argv[]) {
     string command = argv[1];
 
     // ================= TRANSACTION =================
-    if (command == "transaction" && argc == 4) {
-        string fileName = argv[2];
-        string data = argv[3];
+if (command == "transaction" && argc == 4) {
+    string fileName = argv[2];
+    string data = argv[3];
 
-        int txnId = txnCounter++;
+    int txnId = txnCounter++;
 
-        // Log START
-        string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + fileName + " " + data;
-        writeLog(startLog);
+    // Log START
+    string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + fileName + " " + data;
+    writeLog(startLog);
 
-        // CACHE (simple integration)
-        string cached = getFromCache(fileName);
+    // CACHE
+    string cached = getFromCache(fileName);
 
-if (cached != "") {
-    cout << "[CACHE HIT] " << fileName << endl;
-} else {
-    cout << "[CACHE MISS] " << fileName << endl;
-    putCache(fileName, data);
-}
-
-        // DISK WRITE (Person 1)
-        File file(fileName, data.length());
-        file.write(data);
-        root.addFile(file);
-        storage.allocateBlocks(1);
-
-        // Log COMMIT
-        string commitLog = "TXN " + to_string(txnId) + " | COMMIT";
-        writeLog(commitLog);
-
-        cout << "[SUCCESS] Transaction completed.\n";
+    if (cached != "") {
+        cout << "[CACHE HIT] " << fileName << endl;
+    } else {
+        cout << "[CACHE MISS] " << fileName << endl;
+        putCache(fileName, data);
     }
 
-    // ================= CRASH =================
+    // REAL FILE WRITE
+    string filePath = "data/files/" + fileName;
+    ofstream outFile(filePath);
+    outFile << data;
+    outFile.close();
+
+    // Log COMMIT
+    string commitLog = "TXN " + to_string(txnId) + " | COMMIT";
+    writeLog(commitLog);
+
+    cout << "[SUCCESS] Transaction completed.\n";
+}
+
     else if (command == "crash" && argc == 4) {
-        string fileName = argv[2];
+        string file = argv[2];
         string data = argv[3];
 
         int txnId = txnCounter++;
 
-        string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + fileName + " " + data;
+        string startLog = "TXN " + to_string(txnId) + " | START | WRITE " + file + " " + data;
         writeLog(startLog);
 
         cout << "[WARNING] Crash simulated. No commit.\n";
     }
 
-    // ================= RECOVERY =================
     else if (command == "recovery") {
         recoverSystem();
     }
 
-    // ================= CACHE =================
     else if (command == "cache") {
         showCache();
     }
 
-    // ================= CLEAR LOGS =================
-    else if (command == "clear") {
-        ofstream logFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\logs.txt", ios::trunc);
-        // also clear cache
-ofstream cacheFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\cache.txt", ios::trunc);
-ofstream statsFile("C:\\Users\\Varnika Sharma\\Desktop\\File_Recovery_Tool\\File-System-Recovery-and-Optimization-Tool\\data\\cache_stats.txt", ios::trunc);
+   else if (command == "clear") {
 
-        if (!logFile) {
-            cout << "Error: Could not open log file.\n";
-            return 1;
-        }
+    // Clear logs
+    ofstream logFile("data/logs.txt", ios::trunc);
+    logFile.close();
 
-        logFile.close();
-        cout << "[INFO] Logs cleared.\n";
-    }
+    // Clear cache
+    ofstream cacheFile("data/cache.txt", ios::trunc);
+    cacheFile.close();
+
+    ofstream statsFile("data/cache_stats.txt", ios::trunc);
+    statsFile << "0 0";
+    statsFile.close();
+
+    // 🔥 DELETE REAL FILES
+    system("del /Q data\\files\\*");   // Windows
+
+    cout << "[INFO] Logs, Cache, and Files cleared.\n";
+}
 
     else {
         cout << "Invalid command.\n";
