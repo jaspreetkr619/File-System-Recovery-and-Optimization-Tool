@@ -188,3 +188,75 @@ This project simulates a file system with features such as:
 - Storage management integration
 - File recovery system
 - End-to-end working system
+
+# Person 3 work
+## Day 1 – Branch Setup and Initial Development
+- Created separate branches for individual contributions:
+- feature/disk-management (Person-1)
+- feature/directory-access (Person-2)
+- feature/recovery-ui (Person-3)
+Person-3:
+- Implemented basic logging system (logs.txt)
+- Designed transaction structure using START and COMMIT logs
+- Person-1 & Person-2:
+- Began development of core modules (File, Directory, Storage)
+- Initial testing of individual modules
+
+## Day 2 – Cache and Recovery Logic Implementation
+- Developed cache system (cache.txt, cache_stats.txt)
+- Implemented cache hit and miss logic
+- Added crash simulation functionality
+- Built recovery mechanism using transaction logs
+- Verified logging, crash, and recovery flow through test cases
+
+## Day 3 – Backend Integration (Flask Setup)
+- Developed Flask backend (app.py)
+- Connected C++ core logic with Flask using subprocess
+- Implemented API endpoints:
+/transaction, /crash, /recovery, /cache
+- Tested backend execution and ensured correct output handling
+
+## Day 4 – Frontend Development and UI Integration
+- Designed frontend using HTML, CSS, and JavaScript
+- Created UI sections:
+- Input parameters
+- Core operations
+- System operations
+- Connected frontend with Flask APIs
+- Fixed UI issues (button handling, output display, preventing page reload)
+- Completed initial UI testing
+
+## Day 5 – First Integration (Person-1 and Person-3)
+- Merged Person-1 (Storage Core) with Person-3 (Recovery & UI)
+- Resolved conflicts in main.cpp (multiple main function issue)
+- Integrated cache logic into main execution flow
+- Fixed compilation errors and ensured system runs with backend + UI
+- Verified functionality:
+- Transaction
+- Cache
+- Recovery
+
+## Day 6 – Final Integration (Person-2 Modules)
+- Integrated Person-2 modules (Directory, File, Storage)
+- Compared and verified core files (no structural conflicts found)
+- Ensured compatibility of all modules within single system
+- Added directory-related functionalities:
+- File listing
+- File searching
+- Performed full system testing after integration
+
+## Day 7 – Final Enhancements and Deployment Preparation
+- Implemented real file system interaction (data/files/)
+- Improved system behavior for realistic file handling
+- Restructured project for Flask:
+- Moved files into templates/ and static/ folders
+- Enhanced UI:
+- Added background image
+- Improved layout, spacing, and readability
+- Increased input and button sizes
+- Fixed routing issues (/ endpoint using render_template)
+- Cleaned project for deployment:
+- Added .gitignore
+- Removed unnecessary runtime files
+- Prepared documentation and README
+- Final testing and validation of complete system
