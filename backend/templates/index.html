@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>File System Simulator</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
@@ -11,64 +11,58 @@
 
     <h1>File System Recovery & Optimization Tool</h1>
 
-    <!-- Input Section -->
+    <p class="subtitle">
+        Simulating file operations, caching, and recovery in a controlled environment
+    </p>
+
+    <!-- INPUT -->
     <div class="section">
         <h2>Input Parameters</h2>
-
         <div class="input-section">
             <input type="text" id="file" placeholder="Enter File Name">
             <input type="text" id="data" placeholder="Enter Data / Value">
         </div>
     </div>
 
-    <!-- Core Operations -->
+    <!-- CORE -->
     <div class="section">
         <h2>Core Operations</h2>
-
         <div class="buttons">
-            <button id="txnBtn">Perform Transaction</button>
+            <button id="txnBtn">Execute Transaction</button>
             <button id="crashBtn">Simulate Crash</button>
             <button id="recBtn">Run Recovery</button>
         </div>
     </div>
 
-    <!-- Directory Operations (NEW) -->
+    <!-- DIRECTORY -->
     <div class="section">
         <h2>Directory Operations</h2>
-
         <div class="buttons">
             <button id="listBtn">List Files</button>
             <button id="searchBtn">Search File</button>
         </div>
     </div>
 
-    <!-- System & Optimization -->
+    <!-- SYSTEM -->
     <div class="section">
         <h2>System & Optimization</h2>
-
         <div class="buttons">
             <button id="cacheBtn">View Cache</button>
-            <button id="clearBtn">Clear Logs & Reset</button>
+            <button id="clearBtn">Clear Logs</button>
         </div>
     </div>
 
-    <!-- Output -->
+    <!-- OUTPUT -->
     <div class="section output">
         <h2>System Output</h2>
-
         <pre id="outputBox">
-System output will appear here...
-
-Instructions:
-- Enter file name and data
-- Perform transaction
-- Use list/search to explore files
+System ready...
         </pre>
     </div>
 
 </div>
 
-<script src="/script.js"></script>
+<script src="/static/script.js"></script>
 
 </body>
 </html>

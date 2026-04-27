@@ -1,8 +1,8 @@
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory, render_template
 from flask_cors import CORS
 import subprocess
 import os
-app = Flask(__name__, static_folder="frontend", static_url_path="")
+app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
 
 # 🔹 Get absolute paths once (clean approach)
@@ -11,11 +11,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, ".."))
 
 EXE_PATH = os.path.join(PROJECT_ROOT, "main.exe")
+
+# ✅ ADD THIS ROUTE
 @app.route("/")
-def serve_frontend():
-    return send_from_directory(app.static_folder, "index.html")
-
-
+def home():
+    return render_template("index.html")
 @app.route("/transaction")
 def transaction():
     file = request.args.get("file")

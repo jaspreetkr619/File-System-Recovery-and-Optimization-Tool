@@ -1,0 +1,119 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* BODY WITH IMAGE */
+body {
+    background:
+        linear-gradient(rgba(10,15,30,0.6), rgba(10,15,30,0.7)),
+        url("/static/images/Background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #e2e8f0;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* CONTAINER */
+.container {
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+/* SUBTITLE */
+.subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+/* SECTION */
+.section {
+    background: rgba(30, 41, 59, 0.85);
+    padding: 22px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+}
+
+/* SECTION TITLE */
+.section h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* INPUTS */
+.input-section {
+    display: flex;
+    gap: 15px;
+}
+
+input {
+    flex: 1;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    background: #020617;
+    color: white;
+    border: 1px solid #334155;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    flex: 1;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* SPECIAL BUTTON */
+#clearBtn {
+    background: #ef4444;
+}
+
+#clearBtn:hover {
+    background: #dc2626;
+}
+
+/* OUTPUT */
+.output pre {
+    background: #020617;
+    padding: 18px;
+    border-radius: 10px;
+    height: 260px;
+    overflow-y: auto;
+    font-size: 14px;
+}
