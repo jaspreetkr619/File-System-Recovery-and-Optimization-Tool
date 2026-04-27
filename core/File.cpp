@@ -30,6 +30,7 @@ void File::setDeleted(bool status) {
 bool File::getDeleted() const {
     return isDeleted;
 }
+
 string File::readSequential() const {
     return content;
 }

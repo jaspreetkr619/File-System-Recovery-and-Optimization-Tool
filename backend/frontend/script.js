@@ -8,6 +8,7 @@ function updateOutput(data) {
 // Attach events AFTER page loads
 window.onload = function () {
 
+    // ================= TRANSACTION =================
     document.getElementById("txnBtn").addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -24,6 +25,7 @@ window.onload = function () {
             .then(updateOutput);
     });
 
+    // ================= CRASH =================
     document.getElementById("crashBtn").addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -40,6 +42,7 @@ window.onload = function () {
             .then(updateOutput);
     });
 
+    // ================= RECOVERY =================
     document.getElementById("recBtn").addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -48,6 +51,7 @@ window.onload = function () {
             .then(updateOutput);
     });
 
+    // ================= CACHE =================
     document.getElementById("cacheBtn").addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -56,6 +60,7 @@ window.onload = function () {
             .then(updateOutput);
     });
 
+    // ================= CLEAR =================
     document.getElementById("clearBtn").addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -63,4 +68,30 @@ window.onload = function () {
             .then(res => res.text())
             .then(updateOutput);
     });
+
+    // ================= LIST FILES (FIXED) =================
+    document.getElementById("listBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        fetch(`${BASE_URL}/list`)
+            .then(res => res.text())
+            .then(updateOutput);
+    });
+
+    // ================= SEARCH FILE (FIXED) =================
+    document.getElementById("searchBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const file = document.getElementById("file").value;
+
+        if (!file) {
+            updateOutput("Please enter a file name to search.");
+            return;
+        }
+
+        fetch(`${BASE_URL}/search?file=${file}`)
+            .then(res => res.text())
+            .then(updateOutput);
+    });
+
 };

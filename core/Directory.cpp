@@ -31,10 +31,10 @@ void Directory::listContents() const {
     cout << "\nDirectory: " << name << endl;
 
     for (const auto &file : files) {
-    if (!file.getDeleted()) {
-        cout << "- " << file.getName() << endl;
+        if (!file.getDeleted()) {
+            cout << "- " << file.getName() << endl;
+        }
     }
-}
 
     for (const auto &dir : subdirectories) {
         cout << "[DIR] " << dir.getName() << endl;

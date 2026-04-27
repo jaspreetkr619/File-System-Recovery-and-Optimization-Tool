@@ -69,6 +69,25 @@ if (command == "transaction" && argc == 4) {
         cout << "[WARNING] Crash simulated. No commit.\n";
     }
 
+    else if (command == "search" && argc == 3) {
+        string fileName = argv[2];
+        string filePath = "data/files/" + fileName;
+
+        ifstream file(filePath);
+
+        if (file) {
+            cout << "[FOUND] " << fileName << endl;
+            file.close();
+        } else {
+            cout << "[NOT FOUND] " << fileName << endl;
+        }
+    }
+
+    else if (command == "list") {
+        cout << "\nFiles in system:\n";
+        system("dir data\\files");   // Windows
+    }
+
     else if (command == "recovery") {
         recoverSystem();
     }

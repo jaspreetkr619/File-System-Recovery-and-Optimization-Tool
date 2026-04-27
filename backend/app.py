@@ -60,6 +60,25 @@ def recovery():
 
     return result.stdout
 
+@app.route("/list")
+def list_files():
+    result = subprocess.run(
+        [EXE_PATH, "list"],
+        capture_output=True,
+        text=True
+    )
+    return result.stdout
+
+@app.route("/search")
+def search_file():
+    file = request.args.get("file")
+
+    result = subprocess.run(
+        [EXE_PATH, "search", file],
+        capture_output=True,
+        text=True
+    )
+    return result.stdout
 
 @app.route("/cache")
 def cache():
