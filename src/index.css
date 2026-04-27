@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   File System Recovery & Optimization Tool — Design System
+   Light, professional, academic OS-simulator aesthetic.
+   All colors are HSL.
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand — calm professional blue */
+    --primary: 217 91% 45%;
+    --primary-foreground: 210 40% 98%;
+    --primary-muted: 217 91% 95%;
+
+    --secondary: 215 25% 94%;
+    --secondary-foreground: 222 47% 18%;
+
+    --muted: 215 28% 95%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 199 89% 92%;
+    --accent-foreground: 217 91% 25%;
+
+    --destructive: 0 78% 54%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 35 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Disk-block colors used across visualizations */
+    --block-free: 142 70% 45%;        /* green */
+    --block-used: 217 91% 50%;        /* blue  */
+    --block-deleted: 0 78% 58%;       /* red   */
+    --block-system: 262 60% 55%;      /* purple — reserved */
+
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 217 91% 45%;
+
+    --radius: 0.6rem;
+
+    /* Sidebar */
+    --sidebar-background: 222 47% 13%;
+    --sidebar-foreground: 215 20% 80%;
+    --sidebar-primary: 217 91% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 30% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 222 30% 20%;
+    --sidebar-ring: 217 91% 55%;
+  }
+
+  .dark {
+    /* Dark mode kept as a sane fallback; product is light-first */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 32% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 18%;
+    --input: 217 32% 18%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  /* Disk block visualization helpers */
+  .block-cell {
+    @apply h-6 w-6 rounded-sm border border-white/40 transition-transform;
+  }
+  .block-cell:hover {
+    transform: scale(1.15);
+  }
+  .block-free    { background-color: hsl(var(--block-free)); }
+  .block-used    { background-color: hsl(var(--block-used)); }
+  .block-deleted { background-color: hsl(var(--block-deleted)); }
+  .block-system  { background-color: hsl(var(--block-system)); }
+}
